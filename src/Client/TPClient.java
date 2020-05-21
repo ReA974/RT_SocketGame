@@ -25,6 +25,8 @@ public class TPClient extends Frame {
 	Timer timer;
 
 
+
+
 	/** Constructeur */
 	public TPClient(int number,int team, int x, int y)
 	{
@@ -33,9 +35,14 @@ public class TPClient extends Frame {
 		add("North", tpPanel);
 		tpCanvas = new TPCanvas(this.etat);
 		add("Center", tpCanvas);
+
+		int index = ( (y * 10) + x ) * 2;
+
+		tpCanvas.etat[index] = (byte) number; // number > 0 = joueur et 0 = pas de joueur
+		tpCanvas.etat[index+1] = (byte) team; // 1 = equipe blue et 2 = equipe rouge
 		
 		timer = new Timer();
-		//timer.schedule ( new MyTimerTask (  ) , 500,500) ;
+		timer.schedule ( new MyTimerTask (  ) , 500,500) ;
 
 	}
 	
@@ -133,13 +140,13 @@ public class TPClient extends Frame {
 	}
 
 	/** Pour rafraichir */
-	/*class MyTimerTask extends TimerTask{
+	class MyTimerTask extends TimerTask{
 		
 		public void run ()
 		{
 			System.out.println("refresh");
           		refresh();
 		}
-	}*/
+	}
 	
 }

@@ -13,8 +13,6 @@ public class TPCanvas extends Canvas {
 	byte [] etat;
 
 
-
-
 	
 	Color [] color = {Color.black,Color.blue,Color.red, Color.green, Color.yellow}; 
 	// 0 black
