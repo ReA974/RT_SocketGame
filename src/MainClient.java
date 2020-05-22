@@ -38,7 +38,7 @@ public class MainClient {
             tpClient.setVisible(true);
         }
         catch (Exception e) {
-            e.printStackTrace(); //affiche l'erreu
+            e.printStackTrace(); //affiche l'erreur
         }
     }
 }
