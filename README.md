@@ -27,7 +27,7 @@ RT_SocketGame Projet Réseau Transmission
 
 ### Deux choix possible pour l'équipe :
 
-    0 -> equipe bleu
+    0 -> équipe bleue
     1 -> équipe rouge
 
 ### Choix de la position :
