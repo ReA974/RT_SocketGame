@@ -14,7 +14,7 @@ public class MainClient {
 
         System.out.println("args :" + args.length);
         if (args.length != 3) {
-            System.out.println("Usage : java TPClient color positionX positionY ");
+            System.out.println("Usage : java tea.TPClient color positionX positionY ");
             System.exit(0);
         }
         try {
