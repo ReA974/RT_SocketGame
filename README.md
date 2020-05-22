@@ -1,7 +1,7 @@
 RT_SocketGame Projet Réseau Transmission
 ====
 
-###-> Créer le build
+### -> Créer le build
 
     mkdir build
 
