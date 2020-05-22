@@ -1,5 +1,3 @@
-package tea.Client;
-
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,7 +10,7 @@ import java.awt.Graphics;
 
 public class TPCanvas extends Canvas {
 
-	int size =1000;
+	int size = 1000;
 	int nbPosition = 10;
 	byte [] etat;
 	

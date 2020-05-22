@@ -1,5 +1,3 @@
-package tea.Client;
-
 import java.awt.Panel;
 import java.awt.Button;
 import java.awt.event.ActionEvent;

@@ -1,5 +1,3 @@
-package tea.Client;
-
 import java.awt.*;
 import java.io.*;
 import java.net.Socket;
@@ -178,7 +176,6 @@ public class TPClient extends Frame {
         toReceive = new Thread(new Runnable() {
             public void run() {
                 try {
-                    int count = 0;
                     in = new DataInputStream(clientSocket.getInputStream());
                     byte[] actuel = new byte[2 * 10 * 10 + 1];
                     in.read(actuel); //pour voir les changements réalisés
@@ -190,14 +187,14 @@ public class TPClient extends Frame {
                             // byte = 0 -> impossible
                             x = xvoulu;
                             y = yvoulu;
-                        } else {
+                        }
+                        else {
                             xvoulu = x;
                             yvoulu = y;
                         }
                         for (int i = 0; i < etat.length; i++) {
                             etat[i] = actuel[i];
                         }
-                        count++;
 
                         in.read(actuel);
 
