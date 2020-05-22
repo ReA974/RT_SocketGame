@@ -20,7 +20,7 @@ public class TPClient extends Frame {
     int team;
     int x;
     int y;
-    int numero;
+
     public int port = 8000;
 
     Socket socket = null;
@@ -64,7 +64,6 @@ public class TPClient extends Frame {
         timer = new Timer();
         timer.schedule(new MyTimerTask(), 500, 500);
 
-        this.numero = number;
         this.team = team;
 
         this.x = x;
@@ -72,8 +71,7 @@ public class TPClient extends Frame {
         this.xvoulu = x;
         this.yvoulu = y;
 
-        this.number += 1; //permet l'incrémentation du numéro du joueur
-        this.send = this.x + ";" + this.y + ";" + xvoulu + ";" + yvoulu + ";" + this.team + ";" + this.numero;
+        this.send = this.x + ";" + this.y + ";" + xvoulu + ";" + yvoulu + ";" + this.team;
     }
 
     /**
@@ -84,12 +82,11 @@ public class TPClient extends Frame {
 
         this.xvoulu = this.x + 1; //permet de déplacer le jeton
 
-        this.send = this.x + ";" + this.y + ";" + this.xvoulu + ";" + this.yvoulu + ";" + this.team + ";" + this.numero;
+        this.send = this.x + ";" + this.y + ";" + this.xvoulu + ";" + this.yvoulu + ";" + this.team;
         synchronized (this.toSend) {
             toSend.notify(); //pour le toSend.wait() de toSend()
         }
-        refresh();
-
+        tpCanvas.repaint();
     }
 
     /**
@@ -100,11 +97,11 @@ public class TPClient extends Frame {
 
         this.xvoulu = this.x - 1; //permet de déplacer le jeton
 
-        this.send = this.x + ";" + this.y + ";" + this.xvoulu + ";" + this.yvoulu + ";" + this.team + ";" + this.numero;
+        this.send = this.x + ";" + this.y + ";" + this.xvoulu + ";" + this.yvoulu + ";" + this.team;
         synchronized (this.toSend) {
             toSend.notify(); //pour le toSend.wait() de toSend()
         }
-        refresh();
+        tpCanvas.repaint();
     }
 
     /**
@@ -115,11 +112,11 @@ public class TPClient extends Frame {
 
         this.yvoulu = this.y - 1; //permet de déplacer le jeton
 
-        this.send = this.x + ";" + this.y + ";" + this.xvoulu + ";" + this.yvoulu + ";" + this.team + ";" + this.numero;
+        this.send = this.x + ";" + this.y + ";" + this.xvoulu + ";" + this.yvoulu + ";" + this.team;
         synchronized (this.toSend) {
             toSend.notify(); //pour le toSend.wait() de toSend()
         }
-        refresh();
+        tpCanvas.repaint();
     }
 
     /**
@@ -130,18 +127,10 @@ public class TPClient extends Frame {
 
         this.yvoulu = this.y + 1; //permet de déplacer le jeton
 
-        this.send = this.x + ";" + this.y + ";" + this.xvoulu + ";" + this.yvoulu + ";" + this.team + ";" + this.numero;
+        this.send = this.x + ";" + this.y + ";" + this.xvoulu + ";" + this.yvoulu + ";" + this.team;
         synchronized (this.toSend) {
             toSend.notify(); //pour le toSend.wait() de toSend()
         }
-        refresh();
-
-    }
-
-    /**
-     * Pour rafraichir la situation
-     */
-    public synchronized void refresh() {
         tpCanvas.repaint();
     }
 
@@ -183,11 +172,9 @@ public class TPClient extends Frame {
             }
         });
         toSend.start();
-
     }
 
     public synchronized void toReceive() {
-
         toReceive = new Thread(new Runnable() {
             public void run() {
                 try {
@@ -214,7 +201,7 @@ public class TPClient extends Frame {
 
                         in.read(actuel);
 
-                        refresh();
+                        tpCanvas.repaint();
                     }
                 }
                 catch (IOException e) {
@@ -223,7 +210,6 @@ public class TPClient extends Frame {
             }
         });
         toReceive.start();
-
     }
 
     /**
@@ -231,7 +217,7 @@ public class TPClient extends Frame {
      */
     class MyTimerTask extends TimerTask {
         public void run() {
-            refresh();
+            tpCanvas.repaint();
         }
     }
 }
