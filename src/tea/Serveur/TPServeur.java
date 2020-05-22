@@ -90,7 +90,7 @@ public class TPServeur {
                     message = in.readUTF();
                     while (message != null) {
                         System.out.println(message);
-                        String[] point = new String[6];
+                        String[] point = new String[5];
                         point = message.split(";");
                         //permet la libération de la place si le mouvement est valide
                         int ancienx = parseInt(point[0]);
@@ -100,12 +100,11 @@ public class TPServeur {
                         int yvoulu = parseInt(point[3]);
                         //récupère l'équipe pour associer la bonne couleur
                         int team = parseInt(point[4]);
-                        int numero = parseInt(point[5]);
 
                         if (setEtat(ancienx, ancieny, xvoulu, yvoulu, team)) {
                             int victoire = 0; // On met 0 pour le moment car on a pas eu le temps de coder la méthode de vctoire
                             if (victoire != 0) { // Pas encore fini mais si victoire = 1 la team 1 gagne et si victoire = 2 la team 2 gagne
-                                System.out.println("Bravo team " + victoire + " vous avez gagné");
+                                System.out.println("Bravo à l'équipe " + team + victoire + " vous avez gagné");
                             }
                         }
                         out.write(TPServeur.etat);
