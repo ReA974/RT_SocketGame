@@ -103,7 +103,7 @@ public class TPServeur {
                         int numero = parseInt(point[5]);
 
                         if (setEtat(ancienx, ancieny, xvoulu, yvoulu, team)) {
-                            int victoire = 0; // On met 3 pour le moment car on a pas eu le temps de coder la méthode de vctoire
+                            int victoire = 0; // On met 0 pour le moment car on a pas eu le temps de coder la méthode de vctoire
                             if (victoire != 0) { // Pas encore fini mais si victoire = 1 la team 1 gagne et si victoire = 2 la team 2 gagne
                                 System.out.println("Bravo team " + victoire + " vous avez gagné");
                             }
@@ -124,22 +124,19 @@ public class TPServeur {
         toReceive.start();
     }
 
-    public boolean setEtat(int ancienx, int ancieny, int x, int y, int team) throws IOException {
+    public boolean setEtat(int ancienx, int ancieny, int x, int y, int team){
         //impossible de base donc byte est initialisé à 0
         TPServeur.etat[200] = 0;
 
         int pos = (y * 10 + x) * 2;
 
         if (pos > etat.length) {  //impossible, hors jeu
-
             return false;
         }
         if ((x < 0 || y < 0) || (x > 9 || y > 9)) { //impossible, hors jeu
-
             return false;
         }
         if (TPServeur.etat[pos] == 1) { //impossible, déjà utilisé
-
             return false;
         }
 
